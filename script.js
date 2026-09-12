@@ -8,10 +8,8 @@ function openProject(modalId) {
     if (!modal) return;
 
     modal.classList.add("is-open");
-
     document.body.classList.add("modal-open");
 }
-
 
 function closeProject(modalId) {
     const modal = document.getElementById(modalId);
@@ -35,9 +33,8 @@ const mobileMenu = document.getElementById("mobileMenu");
 const mobileMenuClose = document.getElementById("mobileMenuClose");
 const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
 
-
 function openMobileMenu() {
-    if (!mobileMenu || !mobileMenuOverlay || !menuToggle) return;
+    if (!menuToggle || !mobileMenu || !mobileMenuOverlay) return;
 
     mobileMenu.classList.add("active");
     mobileMenuOverlay.classList.add("active");
@@ -48,37 +45,48 @@ function openMobileMenu() {
     document.body.classList.add("menu-open");
 }
 
-
 function closeMobileMenu() {
-    if (!mobileMenu || !mobileMenuOverlay || !menuToggle) return;
+    if (!mobileMenu || !mobileMenuOverlay) return;
 
     mobileMenu.classList.remove("active");
     mobileMenuOverlay.classList.remove("active");
 
     mobileMenu.setAttribute("aria-hidden", "true");
-    menuToggle.setAttribute("aria-expanded", "false");
+
+    if (menuToggle) {
+        menuToggle.setAttribute("aria-expanded", "false");
+    }
 
     document.body.classList.remove("menu-open");
 }
 
 
+// กดปุ่มสามขีด
 if (menuToggle) {
-    menuToggle.addEventListener("click", openMobileMenu);
+    menuToggle.addEventListener("click", function () {
+        if (mobileMenu.classList.contains("active")) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+    });
 }
 
 
+// กด X เพื่อปิดเมนู
 if (mobileMenuClose) {
     mobileMenuClose.addEventListener("click", closeMobileMenu);
 }
 
 
+// กดพื้นหลังดำเพื่อปิดเมนู
 if (mobileMenuOverlay) {
     mobileMenuOverlay.addEventListener("click", closeMobileMenu);
 }
 
 
-// กดเมนูแล้วปิด Drawer อัตโนมัติ
-document.querySelectorAll(".mobile-menu-links a").forEach((link) => {
+// กดลิงก์ในเมนูแล้วปิด Drawer อัตโนมัติ
+document.querySelectorAll(".mobile-menu-links a").forEach(function (link) {
     link.addEventListener("click", closeMobileMenu);
 });
 
@@ -96,9 +104,7 @@ document.addEventListener("keydown", function (event) {
     }
 
     // ปิด Project Modal
-    const openModal = document.querySelector(
-        ".project-modal.is-open"
-    );
+    const openModal = document.querySelector(".project-modal.is-open");
 
     if (openModal) {
         closeProject(openModal.id);
@@ -126,26 +132,17 @@ document.addEventListener("click", function (event) {
 
     event.stopPropagation();
 
-
-    // Overlay
     const overlay = document.createElement("div");
     overlay.className = "image-preview";
 
-
-    // Preview Image
     const previewImage = document.createElement("img");
-
     previewImage.src = image.src;
     previewImage.alt = image.alt || "Project image";
 
-
-    // Close Button
     const closeButton = document.createElement("button");
-
     closeButton.className = "preview-close";
     closeButton.type = "button";
     closeButton.innerHTML = "&times;";
-
 
     overlay.appendChild(previewImage);
     overlay.appendChild(closeButton);
@@ -153,13 +150,13 @@ document.addEventListener("click", function (event) {
     document.body.appendChild(overlay);
 
 
-    // ปิดด้วย X
+    // กด X เพื่อปิดรูป
     closeButton.addEventListener("click", function () {
         overlay.remove();
     });
 
 
-    // ปิดเมื่อกดพื้นหลัง
+    // กดพื้นที่รอบรูปเพื่อปิด
     overlay.addEventListener("click", function (event) {
         if (event.target === overlay) {
             overlay.remove();
@@ -169,7 +166,7 @@ document.addEventListener("click", function (event) {
 
 
 // ========================================
-// CLOSE MOBILE MENU WHEN SCREEN BECOMES DESKTOP
+// RESET MENU WHEN DESKTOP
 // ========================================
 
 window.addEventListener("resize", function () {

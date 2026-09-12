@@ -7,7 +7,298 @@
 
     <title>Kanyaporn Portfolio</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20260912-0740">
+
+    <style>
+        /* Critical responsive fallback.
+           This is intentionally inline so mobile browsers cannot show an old cached navbar layout. */
+
+        .menu-toggle,
+        .mobile-menu,
+        .mobile-menu-overlay {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            html, body {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                overflow-x: hidden;
+            }
+
+            nav.navbar {
+                position: sticky;
+                top: 0;
+                z-index: 4000;
+                width: 100%;
+                min-height: 66px;
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                gap: 0 !important;
+                padding: 11px 18px !important;
+                margin: 0 !important;
+                background: #fff;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            nav.navbar .logo {
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                font-size: 20px !important;
+                line-height: 1.2 !important;
+                color: #0f172a;
+                white-space: nowrap;
+            }
+
+            nav.navbar .menu {
+                display: none !important;
+            }
+
+            nav.navbar .menu-toggle {
+                display: flex !important;
+                width: 44px;
+                height: 44px;
+                flex: 0 0 44px;
+                padding: 0;
+                margin: 0;
+                border: 0;
+                background: transparent;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                cursor: pointer;
+            }
+
+            nav.navbar .menu-toggle span {
+                display: block !important;
+                width: 25px;
+                height: 2px;
+                background: #0f172a;
+                border-radius: 999px;
+            }
+
+            .mobile-menu-overlay {
+                display: block !important;
+                position: fixed;
+                inset: 0;
+                z-index: 4998;
+                background: rgba(15, 23, 42, .48);
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transition: opacity .25s ease, visibility .25s ease;
+            }
+
+            .mobile-menu-overlay.active {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+
+            .mobile-menu {
+                display: flex !important;
+                position: fixed !important;
+                top: 0 !important;
+                right: 0 !important;
+                left: auto !important;
+                z-index: 4999;
+                width: min(340px, 86vw);
+                height: 100dvh;
+                margin: 0 !important;
+                padding: 24px 22px;
+                flex-direction: column;
+                background: #fff;
+                box-shadow: -18px 0 45px rgba(15, 23, 42, .18);
+                transform: translate3d(105%, 0, 0) !important;
+                transition: transform .3s ease;
+                overflow-y: auto;
+            }
+
+            .mobile-menu.active {
+                transform: translate3d(0, 0, 0) !important;
+            }
+
+            .mobile-menu-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-bottom: 18px;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .mobile-menu-header h2 {
+                margin: 0;
+                color: #0f172a;
+                font-size: 23px;
+            }
+
+            .mobile-menu-close {
+                width: 42px;
+                height: 42px;
+                padding: 0;
+                border: 0;
+                background: transparent;
+                color: #0f172a;
+                font-size: 36px;
+                line-height: 1;
+            }
+
+            .mobile-menu-links {
+                display: flex;
+                flex-direction: column;
+                margin-top: 18px;
+            }
+
+            .mobile-menu-links a {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                padding: 15px 8px;
+                border-bottom: 1px solid #f1f5f9;
+                color: #0f172a;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 700;
+            }
+
+            .mobile-menu-links a span {
+                width: 28px;
+                flex: 0 0 28px;
+                color: #0ea5e9;
+                font-size: 12px;
+                font-weight: 800;
+            }
+
+            .mobile-menu-social {
+                display: flex;
+                gap: 22px;
+                margin-top: auto;
+                padding-top: 20px;
+                border-top: 1px solid #e2e8f0;
+            }
+
+            .mobile-menu-social a {
+                color: #475569;
+                text-decoration: none;
+                font-weight: 700;
+            }
+
+            body.menu-open {
+                overflow: hidden;
+            }
+
+            #home {
+                width: 100% !important;
+                max-width: 100% !important;
+                min-width: 0 !important;
+                min-height: auto !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+                gap: 28px !important;
+                margin: 0 !important;
+                padding: 42px 20px 52px !important;
+                text-align: center !important;
+                overflow: hidden !important;
+            }
+
+            #home .hero-text {
+                width: 100% !important;
+                max-width: 350px !important;
+                min-width: 0 !important;
+                margin: 0 auto !important;
+                padding: 0 !important;
+                text-align: center !important;
+                transform: none !important;
+            }
+
+            #home .hello {
+                margin: 0 0 9px !important;
+                font-size: 15px !important;
+                line-height: 1.5 !important;
+            }
+
+            #home .hero-text h1 {
+                width: 100% !important;
+                margin: 0 0 9px !important;
+                font-size: 31px !important;
+                line-height: 1.25 !important;
+                white-space: normal !important;
+                overflow-wrap: anywhere;
+            }
+
+            #home .hero-text h2 {
+                width: 100% !important;
+                margin: 0 0 10px !important;
+                font-size: 19px !important;
+                line-height: 1.45 !important;
+                white-space: normal !important;
+                overflow-wrap: anywhere;
+            }
+
+            #home .hero-text h3 {
+                width: 100% !important;
+                margin: 0 0 20px !important;
+                font-size: 15px !important;
+                line-height: 1.6 !important;
+                white-space: normal !important;
+                overflow-wrap: anywhere;
+            }
+
+            #home .intro {
+                width: 100% !important;
+                max-width: 330px !important;
+                margin: 0 auto 24px !important;
+                font-size: 15px !important;
+                line-height: 1.75 !important;
+                text-align: center !important;
+                overflow-wrap: anywhere;
+            }
+
+            #home .hero-buttons,
+            #home .hero-links {
+                width: 100%;
+                justify-content: center !important;
+            }
+
+            #home .hero-buttons {
+                display: flex !important;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 0 0 18px !important;
+            }
+
+            #home .hero-links {
+                display: flex !important;
+                gap: 22px;
+                margin: 0 !important;
+            }
+
+            #home .hero-image {
+                width: 100% !important;
+                margin: 0 !important;
+                display: flex !important;
+                justify-content: center !important;
+            }
+
+            #home .hero-image img {
+                display: block;
+                width: 230px !important;
+                max-width: 75vw !important;
+                height: 290px !important;
+                margin: 0 auto !important;
+                object-fit: cover !important;
+                border-radius: 18px;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -1267,7 +1558,7 @@
     </footer>
 
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260912-0740"></script>
 
 </body>
 
