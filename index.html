@@ -15,10 +15,11 @@
     <!-- =========================
          NAVBAR
     ========================== -->
-    <nav>
+    <nav class="navbar">
 
         <h2 class="logo">กัลญาพร</h2>
 
+        <!-- Desktop Menu -->
         <div class="menu">
             <a href="#home">หน้าแรก</a>
             <a href="#about">เกี่ยวกับฉัน</a>
@@ -28,7 +29,73 @@
             <a href="#contact">ติดต่อ</a>
         </div>
 
+        <!-- Mobile Hamburger Button -->
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="เปิดเมนู"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
     </nav>
+
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+
+    <!-- Mobile Side Menu -->
+    <aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+
+        <div class="mobile-menu-header">
+
+            <h2>กัลญาพร</h2>
+
+            <button
+                class="mobile-menu-close"
+                id="mobileMenuClose"
+                type="button"
+                aria-label="ปิดเมนู"
+            >
+                &times;
+            </button>
+
+        </div>
+
+        <div class="mobile-menu-links">
+
+            <a href="#home"><span>01</span>หน้าแรก</a>
+            <a href="#about"><span>02</span>เกี่ยวกับฉัน</a>
+            <a href="#skills"><span>03</span>ทักษะ</a>
+            <a href="#projects"><span>04</span>ผลงาน</a>
+            <a href="#experience"><span>05</span>ประสบการณ์</a>
+            <a href="#contact"><span>06</span>ติดต่อ</a>
+
+        </div>
+
+        <div class="mobile-menu-social">
+
+            <a href="https://www.linkedin.com/in/ploy-kanyaporn-csi-078470431/"
+               target="_blank"
+               rel="noopener noreferrer">
+                LinkedIn
+            </a>
+
+            <a href="https://github.com/Kanyapxz"
+               target="_blank"
+               rel="noopener noreferrer">
+                GitHub
+            </a>
+
+        </div>
+
+    </aside>
 
 
     <!-- =========================
